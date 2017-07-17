@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F58D4BBF-63DA-44A6-8017-AE50D1EC7731}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NetLogClient</RootNamespace>
+    <AssemblyName>NetLogClient</AssemblyName>
+    <ApplicationIcon>run.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/NetLogClient/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Librairies\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.9.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Librairies\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Gui\FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\WindowComputerExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\WindowComputerExplorer.Designer.cs">
+      <DependentUpon>WindowComputerExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\WindowEventXml.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\WindowEventXml.Designer.cs">
+      <DependentUpon>WindowEventXml.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListViewAutoSize.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="log4j\log4j.cs">
+      <DependentUpon>log4j.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LogEntry.cs" />
+    <Compile Include="Gui\WindowEventDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\WindowEventDetail.Designer.cs">
+      <DependentUpon>WindowEventDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\WindowEventList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\WindowEventList.Designer.cs">
+      <DependentUpon>WindowEventList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogEntryManager.cs" />
+    <Compile Include="Gui\WindowEventPropertyList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\WindowEventPropertyList.Designer.cs">
+      <DependentUpon>WindowEventPropertyList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\WindowLoggerExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\WindowLoggerExplorer.Designer.cs">
+      <DependentUpon>WindowLoggerExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NetLogClientConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Gui\WindowEventDetail.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WindowEventDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WindowEventList.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WindowEventList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WindowLoggerExplorer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WindowLoggerExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Content Include="App.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="log4j\log4j.dtd" />
+    <None Include="log4j\log4j.xsc">
+      <DependentUpon>log4j.xsd</DependentUpon>
+    </None>
+    <Content Include="log4j\log4j.xsd">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="log4j\log4j.xss">
+      <DependentUpon>log4j.xsd</DependentUpon>
+    </None>
+    <Content Include="project.fxcop" />
+    <Compile Include="Properties\UserSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>UserSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="UdpListener.cs" />
+    <Compile Include="Utility\EmbeddedResourceTextReader.cs" />
+    <Compile Include="Gui\WindowEventExceptionDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\WindowEventExceptionDetail.Designer.cs">
+      <DependentUpon>WindowEventExceptionDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\WindowEventMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\WindowEventMessage.Designer.cs">
+      <DependentUpon>WindowEventMessage.cs</DependentUpon>
+    </Compile>
+    <None Include="Properties\UserSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>UserSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Gui\FormAbout.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="About.htm" />
+    <EmbeddedResource Include="Gui\FormMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WindowComputerExplorer.resx">
+      <DependentUpon>WindowComputerExplorer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WindowEventPropertyList.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WindowEventPropertyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WindowEventExceptionDetail.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WindowEventExceptionDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WindowEventMessage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WindowEventMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WindowEventXml.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WindowEventXml.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="developer-notes.txt" />
+    <Content Include="Images\Crystal Clear\blockdevice.ico" />
+    <Content Include="Images\Crystal Clear\blockdevice.png" />
+    <Content Include="Images\Crystal Clear\button_cancel.png" />
+    <Content Include="Images\Crystal Clear\button_ok.png" />
+    <Content Include="Images\Crystal Clear\colorize.png" />
+    <Content Include="Images\Crystal Clear\editcopy.png" />
+    <Content Include="Images\Crystal Clear\editcut.png" />
+    <Content Include="Images\Crystal Clear\editpaste.png" />
+    <Content Include="Images\Crystal Clear\error.ico" />
+    <Content Include="Images\Crystal Clear\error.png" />
+    <Content Include="Images\Crystal Clear\exit.png" />
+    <Content Include="Images\Crystal Clear\flag.ico" />
+    <Content Include="Images\Crystal Clear\flag.png" />
+    <Content Include="Images\Crystal Clear\info.ico" />
+    <Content Include="Images\Crystal Clear\info.png" />
+    <Content Include="Images\Crystal Clear\kblackbox.ico" />
+    <Content Include="Images\Crystal Clear\kblackbox.png" />
+    <Content Include="Images\Crystal Clear\lock.png" />
+    <Content Include="Images\Crystal Clear\run.ico" />
+    <Content Include="Images\Crystal Clear\run.png" />
+    <Content Include="Images\Crystal Clear\services.ico">
+    </Content>
+    <Content Include="Images\Crystal Clear\services.png" />
+    <Content Include="Images\Crystal Clear\stop.png" />
+    <Content Include="Images\Crystal Clear\trashcan_empty.png" />
+    <Content Include="Images\Crystal Clear\txt2.ico" />
+    <Content Include="Images\Crystal Clear\txt2.png" />
+    <Content Include="Images\Crystal Clear\viewmag.ico" />
+    <Content Include="Images\Crystal Clear\viewmag.png" />
+    <Content Include="log4j\log4j.xml" />
+    <Content Include="log4j\readme-log4j.txt" />
+    <Content Include="run.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="event">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="message" nillable="true" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:simpleContent msdata:ColumnName="message_Text" msdata:Ordinal="0">
+              <xs:extension base="xs:string">
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="properties" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="data" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" />
+                  <xs:attribute name="value" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="throwable" nillable="true" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:simpleContent msdata:ColumnName="throwable_Text" msdata:Ordinal="0">
+              <xs:extension base="xs:string">
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="locationInfo" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="class" type="xs:string" />
+            <xs:attribute name="method" type="xs:string" />
+            <xs:attribute name="file" type="xs:string" />
+            <xs:attribute name="line" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="logger" type="xs:string" />
+      <xs:attribute name="timestamp" type="xs:string" />
+      <xs:attribute name="level" type="xs:string" />
+      <xs:attribute name="thread" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="event" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

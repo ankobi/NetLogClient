@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<event logger="LogChatter.Class1" timestamp="1146798648875" level="DEBUG" thread="1968">
+	<message>Debug Message</message>
+	<message>Debug Message</message>
+	<message>Debug Message</message>
+	<properties>
+		<data name="log4japp" value="LogChatter.exe" />
+		<data name="UserName" value="WARLORD\Chris" />
+		<data name="log4jmachinename" value="warlord" />
+		<data name="HostName" value="warlord" />
+	</properties>	
+	<throwable>System.ApplicationException: Here is the outer exception. ---&gt; System.ApplicationException: Here is a nasty app exception.  Enjoy.
+	   --- End of inner exception stack trace ---
+	</throwable>	
+	<throwable>System.ApplicationException: Here is the outer exception. ---&gt; System.ApplicationException: Here is a nasty app exception.  Enjoy.
+	   --- End of inner exception stack trace ---
+	</throwable>
+	<locationInfo class="LogChatter.Class1" method="SchedEvent" file="" line="0" />
+</event>

@@ -1,0 +1,1375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="1.32" Name="My FxCop Project">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="False">c:\program files\microsoft fxcop 1.32\Xml\FxCopReport.Xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="Active" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>100</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>10</RuleExceptionsThreshold>
+  <Spelling Locale="en-us" />
+  <VersionAware>False</VersionAware>
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+ </ProjectOptions>
+ <Targets>
+  <AssemblyReferenceDirectories>
+   <Directory>$(ProjectDir)/bin/Debug/</Directory>
+  </AssemblyReferenceDirectories>
+  <Target Name="$(ProjectDir)/bin/Release/NetLogClient.exe" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="1.32">
+  <Targets>
+   <Target Name="$(ProjectDir)/bin/Release/NetLogClient.exe">
+    <Modules>
+     <Module Name="netlogclient.exe">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Excluded" Created="2006-05-10 01:26:38Z">
+        <Issue Name="NoStrongName">
+         <Item>NetLogClient</Item>
+        </Issue>
+        <Notes>
+         <User Name="Chris">
+          <Note Id="0" />
+         </User>
+        </Notes>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="NetLogClient">
+        <Types>
+         <Type Name="LogEntryManager">
+          <Members>
+           <Member Name="TimeLastEntryAdded">
+            <Accessors>
+             <Accessor Name="set_TimeLastEntryAdded(System.DateTime):System.Void">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2006-05-10 01:26:38Z">
+                <Issue>
+                 <Item>LogEntryManager.set_TimeLastEntryAdded(DateTime):Void</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="UdpListener">
+          <Members>
+           <Member Name="KillClient():System.Void">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>UdpListener.KillClient():Void</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Start():System.Void">
+            <Messages>
+             <Message Id="System.ApplicationException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>UdpListener.Start():Void</Item>
+               <Item>1</Item>
+               <Item>ApplicationException.ApplicationException(String)</Item>
+               <Item>Cannot start the UDP listener; Already listening.</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.ApplicationException.#ctor(System.String,System.Exception)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>UdpListener.Start():Void</Item>
+               <Item>1</Item>
+               <Item>ApplicationException.ApplicationException(String, Exception)</Item>
+               <Item>Could not start listening</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Created="2006-05-10 01:26:38Z">
+              <Issue Name="TooGeneric">
+               <Item>UdpListener.Start():Void</Item>
+               <Item>System.ApplicationException</Item>
+              </Issue>
+              <Issue Name="TooGeneric">
+               <Item>UdpListener.Start():Void</Item>
+               <Item>System.ApplicationException</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="System.IDisposable.Dispose():System.Void">
+            <Messages>
+             <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Created="2006-05-10 02:21:20Z">
+              <Issue Name="DisposeImplementation">
+               <Item>UdpListener.System.IDisposable.Dispose():Void</Item>
+              </Issue>
+              <Issue Name="RenameDispose">
+               <Item>UdpListener.System.IDisposable.Dispose():Void</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2006-05-10 02:21:20Z">
+              <Issue>
+               <Item>UdpListener</Item>
+               <Item>IDisposable.Dispose():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="NetLogClient.Gui">
+        <Types>
+         <Type Name="FormAbout">
+          <Members>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>FormAbout.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>About</Item>
+              </Issue>
+              <Issue>
+               <Item>FormAbout.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Okay</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="FormMain">
+          <Members>
+           <Member Name=".ctor()">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>FormMain.FormMain()</Item>
+               <Item>System.String.Format(System.String,System.Object,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetContentFromPersistString(System.String):WeifenLuo.WinFormsUI.IDockContent">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>FormMain.GetContentFromPersistString(String):IDockContent</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>menuStrip1</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>NetLogClient v 2.0.0.0 (Ripsaw)</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>statusStrip1</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>toolStrip1</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Windows.Forms.ToolStripItem.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>&amp;About</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>&amp;Computer Explorer</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>&amp;File</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>&amp;Help</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>&amp;View</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>About</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Cache Used: 0%</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Clear Cache</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>E&amp;xit</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Entries: 0</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Exit</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Filter:</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Lock Display</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Log Entry Details</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Log Entry Exception</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Log Entry List</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Log Entry Message</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Log Entry Properties</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Log Entry XML</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Logger &amp;Explorer</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Status: Active</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>toolStripButton2</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Use Color</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="RefreshStatusBar():System.Void">
+            <Messages>
+             <Message Id="System.Decimal.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>FormMain.RefreshStatusBar():Void</Item>
+               <Item>System.Decimal.ToString(System.String)</Item>
+               <Item>System.Decimal.ToString(System.String,System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="STATUSBAR_STATUS_PREFIX">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>FormMain.STATUSBAR_STATUS_PREFIX</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="1" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="toolStripButtonPauseCollection_Click(System.Object,System.EventArgs):System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.ToolStripItem.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>FormMain.toolStripButtonPauseCollection_Click(Object, EventArgs):Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Status: Active</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.toolStripButtonPauseCollection_Click(Object, EventArgs):Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Status: Display Locked</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.toolStripButtonPauseCollection_Click(Object, EventArgs):Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Status: Stopped</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="toolStripButtonPauseDisplay_Click(System.Object,System.EventArgs):System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.ToolStripItem.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>FormMain.toolStripButtonPauseDisplay_Click(Object, EventArgs):Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Status: Active</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.toolStripButtonPauseDisplay_Click(Object, EventArgs):Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Status: Display Locked</Item>
+              </Issue>
+              <Issue>
+               <Item>FormMain.toolStripButtonPauseDisplay_Click(Object, EventArgs):Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Status: Stopped</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="WindowComputerExplorer">
+          <Members>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowComputerExplorer.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Computer Explorer</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ROOT_NAME">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>ROOT_NAME</Item>
+              </Issue>
+             </Message>
+             <Message Id="Member" TypeName="LongAcronymsShouldBePascalCased" Category="Microsoft.Naming" CheckId="CA1705" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>WindowComputerExplorer.ROOT_NAME</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="WindowEventDetail">
+          <Members>
+           <Member Name="_currentEntry">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventDetail._currentEntry</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ClearEntries():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventDetail.ClearEntries():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;NULL&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.ClearEntries():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;NULL&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.ClearEntries():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;NULL&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.ClearEntries():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;NULL&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.ClearEntries():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;NULL&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.ClearEntries():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;NULL&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.ClearEntries():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;NULL&gt;</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;not set&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;not set&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;not set&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;not set&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;not set&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;not set&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;not set&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>&lt;not set&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Class:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Exception Details:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>File:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>General</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Level:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Line:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Location Info</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Log Entry Details</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Logger:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Message:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Method:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Thread:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Time:</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>toolStrip1</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="WindowEventExceptionDetail">
+          <Members>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventExceptionDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Exception</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventExceptionDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>toolStrip</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Windows.Forms.ToolStripItem.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventExceptionDetail.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Copy to Clipboard</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="WindowEventList">
+          <Members>
+           <Member Name="ConvertDateTimeFromJava(System.String):System.DateTime">
+            <Messages>
+             <Message Id="System.Convert.ToInt64(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventList.ConvertDateTimeFromJava(String):DateTime</Item>
+               <Item>System.Convert.ToInt64(System.String)</Item>
+               <Item>System.Convert.ToInt64(System.String,System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="CreateListviewItem(NetLogClient.LogEntry):System.Windows.Forms.ListViewItem">
+            <Messages>
+             <Message Id="System.Windows.Forms.ListViewItem+ListViewSubItemCollection.Add(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventList.CreateListviewItem(LogEntry):ListViewItem</Item>
+               <Item>1</Item>
+               <Item>ListViewSubItemCollection.Add(String):ListViewSubItem</Item>
+               <Item>Yes</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.DateTime.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventList.CreateListviewItem(LogEntry):ListViewItem</Item>
+               <Item>System.DateTime.ToString(System.String)</Item>
+               <Item>System.DateTime.ToString(System.String,System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="FilteredByLevel(System.String,NetLogClient.LogEntry):System.Boolean">
+            <Messages>
+             <Message Id="stack0" TypeName="AvoidUnnecessaryStringCreation" Category="Microsoft.Performance" CheckId="CA1807" Created="2006-05-10 01:26:38Z">
+              <Issue Name="UseStringCompareLocal">
+               <Item>WindowEventList.FilteredByLevel(String, LogEntry):Boolean</Item>
+               <Item>String.op_Equality(String, String):Boolean</Item>
+               <Item>stack0</Item>
+              </Issue>
+              <Issue Name="UseStringCompareLocal">
+               <Item>WindowEventList.FilteredByLevel(String, LogEntry):Boolean</Item>
+               <Item>String.op_Equality(String, String):Boolean</Item>
+               <Item>stack0</Item>
+              </Issue>
+              <Issue Name="UseStringCompareLocal">
+               <Item>WindowEventList.FilteredByLevel(String, LogEntry):Boolean</Item>
+               <Item>String.op_Equality(String, String):Boolean</Item>
+               <Item>stack0</Item>
+              </Issue>
+              <Issue Name="UseStringCompareLocal">
+               <Item>WindowEventList.FilteredByLevel(String, LogEntry):Boolean</Item>
+               <Item>String.op_Equality(String, String):Boolean</Item>
+               <Item>stack0</Item>
+              </Issue>
+              <Issue Name="UseStringCompareLocal">
+               <Item>WindowEventList.FilteredByLevel(String, LogEntry):Boolean</Item>
+               <Item>String.op_Equality(String, String):Boolean</Item>
+               <Item>stack0</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventList.FilteredByLevel(String, LogEntry):Boolean</Item>
+               <Item>System.String.ToUpper</Item>
+               <Item>System.String.ToUpper(System.Globalization.CultureInfo)</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventList.FilteredByLevel(String, LogEntry):Boolean</Item>
+               <Item>System.String.ToUpper</Item>
+               <Item>System.String.ToUpper(System.Globalization.CultureInfo)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.ColumnHeader.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ColumnHeader.set_Text(String):Void</Item>
+               <Item>Exception</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ColumnHeader.set_Text(String):Void</Item>
+               <Item>Level</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ColumnHeader.set_Text(String):Void</Item>
+               <Item>Logger</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ColumnHeader.set_Text(String):Void</Item>
+               <Item>Machine</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ColumnHeader.set_Text(String):Void</Item>
+               <Item>Message</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ColumnHeader.set_Text(String):Void</Item>
+               <Item>Thread</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ColumnHeader.set_Text(String):Void</Item>
+               <Item>Timestamp</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Log Entries</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="WindowEventMessage">
+          <Members>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventMessage.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Message</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventMessage.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>toolStrip</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Windows.Forms.ToolStripItem.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventMessage.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Copy to Clipboard</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="WindowEventPropertyList">
+          <Members>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.ColumnHeader.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventPropertyList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ColumnHeader.set_Text(String):Void</Item>
+               <Item>Name</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventPropertyList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ColumnHeader.set_Text(String):Void</Item>
+               <Item>Value</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventPropertyList.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Properties</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="WindowEventXml">
+          <Members>
+           <Member Name="Beautify(System.String):System.String">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventXml.Beautify(String):String</Item>
+               <Item>System.Object</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.IO.StringWriter.#ctor" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventXml.Beautify(String):String</Item>
+               <Item>System.IO.StringWriter.#ctor</Item>
+               <Item>System.IO.StringWriter.#ctor(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventXml.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>toolStrip</Item>
+              </Issue>
+              <Issue>
+               <Item>WindowEventXml.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>XML</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Windows.Forms.ToolStripItem.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowEventXml.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>ToolStripItem.set_Text(String):Void</Item>
+               <Item>Copy to Clipboard</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="WindowLoggerExplorer">
+          <Members>
+           <Member Name="InitializeComponent():System.Void">
+            <Messages>
+             <Message Id="System.Windows.Forms.Control.set_Text(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>WindowLoggerExplorer.InitializeComponent():Void</Item>
+               <Item>1</Item>
+               <Item>Control.set_Text(String):Void</Item>
+               <Item>Logger Explorer</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="NetLogClient.Log4j">
+        <Types>
+         <Type Name="event">
+          <Messages>
+           <Message TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2006-05-10 01:26:38Z">
+            <Issue Name="Type">
+             <Item>event</Item>
+             <Item>event</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+            <Issue Name="Type">
+             <Item>event</Item>
+            </Issue>
+            <Notes>
+             <User Name="Chris">
+              <Note Id="2" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="level">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>level</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="locationInfo">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>locationInfo</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="logger">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>logger</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="message">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>message</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="properties">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>properties</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="thread">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>thread</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="throwable">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>throwable</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="throwable" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>throwable</Item>
+               <Item>event.throwable:eventThrowable</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="timestamp">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>timestamp</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="eventLocationInfo">
+          <Messages>
+           <Message TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+            <Issue Name="Type">
+             <Item>eventLocationInfo</Item>
+            </Issue>
+            <Notes>
+             <User Name="Chris">
+              <Note Id="3" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="class">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>class</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="file">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>file</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="line">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>line</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="method">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>method</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="eventMessage">
+          <Messages>
+           <Message TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+            <Issue Name="Type">
+             <Item>eventMessage</Item>
+            </Issue>
+            <Notes>
+             <User Name="Chris">
+              <Note Id="3" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="Items">
+            <Messages>
+             <Message TypeName="PropertiesShouldNotReturnArrays" Category="Microsoft.Performance" CheckId="CA1819" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>eventMessage.Items:Object[]</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="eventPropertiesData">
+          <Messages>
+           <Message TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+            <Issue Name="Type">
+             <Item>eventPropertiesData</Item>
+            </Issue>
+            <Notes>
+             <User Name="Chris">
+              <Note Id="3" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="name">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>name</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="value">
+            <Messages>
+             <Message Id="Member" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+              <Issue Name="Member">
+               <Item>value</Item>
+              </Issue>
+              <Notes>
+               <User Name="Chris">
+                <Note Id="3" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="eventThrowable">
+          <Messages>
+           <Message TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2006-05-10 01:26:38Z">
+            <Issue Name="Type">
+             <Item>eventThrowable</Item>
+            </Issue>
+            <Notes>
+             <User Name="Chris">
+              <Note Id="3" />
+             </User>
+            </Notes>
+           </Message>
+           <Message Id="Throwable" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2006-05-10 01:26:38Z">
+            <Issue Name="Type">
+             <Item>Throwable</Item>
+             <Item>NetLogClient.Log4j.eventThrowable</Item>
+            </Issue>
+            <Notes>
+             <User Name="Chris">
+              <Note Id="3" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="Items">
+            <Messages>
+             <Message TypeName="PropertiesShouldNotReturnArrays" Category="Microsoft.Performance" CheckId="CA1819" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>eventThrowable.Items:Object[]</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="NetLogClient.Utility">
+        <Types>
+         <Type Name="EmbeddedResourceTextReader">
+          <Members>
+           <Member Name="GetFromResources(System.String):System.String">
+            <Messages>
+             <Message Id="System.Exception.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2006-05-10 01:26:38Z">
+              <Issue>
+               <Item>EmbeddedResourceTextReader.GetFromResources(String):String</Item>
+               <Item>1</Item>
+               <Item>Exception.Exception(String)</Item>
+               <Item>Error retrieving from Resources. Tried '____'&#xD;&#xA;__</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Created="2006-05-10 01:26:38Z">
+              <Issue Name="TooGeneric">
+               <Item>EmbeddedResourceTextReader.GetFromResources(String):String</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Notes>
+   <User Name="Chris">
+    <Note Id="0" Modified="2006-05-10 01:31:41Z">How do I resolve this?  I I add a key then it is fixed but then no other developer can build it unless I add the key to the project.  This is an open source project.  Adding the key to the repository would fix the issue but then anyone could get the key and the source, make it malicious and claim it was the official build...</Note>
+    <Note Id="1" Modified="2006-05-10 02:16:12Z">FXCop incorrectly identified this one.  It is used.</Note>
+    <Note Id="2" Modified="2006-05-10 02:26:55Z">Generated Code;</Note>
+    <Note Id="3" Modified="2006-05-10 02:29:10Z">Generated Code</Note>
+   </User>
+  </Notes>
+  <Rules>
+   <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+    <Resolution Name="NoStrongName">Sign '{0}' with a strong name key.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+    <Resolution Name="Default">'{0}' appears to have no upstream public or protected callers.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidUnnecessaryStringCreation" Category="Microsoft.Performance" CheckId="CA1807">
+    <Resolution Name="UseStringCompareLocal">{0} calls {1} after converting '{2}', a local, to upper or lowercase. If possible, eliminate the string creation and call the overload of String.Compare that performs a case-insensitive comparison.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
+    <Resolution Name="Default">It appears that field '{0}' is never used or is only ever assigned to. Use this field or remove it.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+    <Resolution Name="Default">Modify '{0}' to catch a more specific exception than '{1}' or rethrow the exception.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303">
+    <Resolution Name="Default">{0} passes a literal as parameter {1} of a call to {2}. Retrieve the following string argument from a resource table instead: '{3}'</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201">
+    <Resolution Name="TooGeneric">{0} creates an exception of type '{1}', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+    <Resolution Name="Member">Correct the casing of member name '{0}'.</Resolution>
+    <Resolution Name="Type">Correct the casing of type name '{0}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="Member">Correct the spelling of the unrecognized token '{0}' in member name '{1}'.</Resolution>
+    <Resolution Name="Type">Correct the spelling of the unrecognized token '{0}' in type name '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707">
+    <Resolution Name="Member">Remove all underscores from member '{0}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716">
+    <Resolution Name="Type">Change type name '{0}' so that it does not conflict with reserved keyword:'{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063">
+    <Resolution Name="DisposeImplementation">Modify {0} so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in VB), and then returns.</Resolution>
+    <Resolution Name="RenameDispose">Rename {0} to 'Dispose' and ensure that it is declared as public and sealed.</Resolution>
+   </Rule>
+   <Rule TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033">
+    <Resolution Name="Default">Make '{0}' sealed (a breaking change if this class has previously shipped), implement the method non-explicitly, or implement a new method that exposes the functionality of '{1}' and is visible to derived classes.</Resolution>
+   </Rule>
+   <Rule TypeName="LongAcronymsShouldBePascalCased" Category="Microsoft.Naming" CheckId="CA1705">
+    <Resolution Name="Member">Correct the capitalization of member name '{0}'.</Resolution>
+   </Rule>
+   <Rule TypeName="PropertiesShouldNotReturnArrays" Category="Microsoft.Performance" CheckId="CA1819">
+    <Resolution Name="Default">Change {0} to return a collection or make it a method.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304">
+    <Resolution Name="Default">{0} makes a call to {1} that does not explicitly provide a CultureInfo. This should be replaced with a call to {2}.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+    <Resolution Name="Default">{0} makes a call to {1} that does not explicitly provide an IFormatProvider. This should be replaced with a call to {2}.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>

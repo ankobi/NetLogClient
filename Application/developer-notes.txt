@@ -1,0 +1,23 @@
+This file is just a few reminders for myself (Chris)...
+
+TO ADD A NEW DOCKED WINDOW: 
+1) Create a new blank control; 
+2) Add: using WeifenLuo.WinFormsUI;
+3) Change it to extend DockContent
+4) Set the tab text property
+5) Set the Hide on Close property to true
+6) Set the Dockable Areas property
+7) Set the ShowHint property
+8) Modify GetContentFromPersistString on this page
+9) Modify SetDefaultGui()
+10) Viola! Enjoy.
+
+TO RELEASE A NEW VERSION: (including betas)
+- update the about.html
+- update the AssemblyInfo.cs if needed
+- update the FormMain title if needed
+- update the installer's version properties (always) and the product code (unless beta)s
+- update "Latest Version" on the index page of the website
+- commit changes and create tag
+- if this is a final release, create a branch also
+- upload website
